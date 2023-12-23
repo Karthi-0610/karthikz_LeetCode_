@@ -1,0 +1,31 @@
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        int start=0;
+        int end=nums.length-1;
+        int arr[]={-1,-1};
+        arr[0]=Search(nums,start,end,target,true);
+        arr[1]=Search(nums,start,end,target,false);
+        return arr;
+    }
+
+    static int Search(int arr[],int start,int end,int target,boolean bool){
+        int mid=start+((end-start)/2);
+        int num=-1;
+        while(start<=end){
+            mid=start+((end-start)/2);
+            if(target<arr[mid]){
+                end=mid-1;
+            }else if(target>arr[mid]){
+                start=mid+1;
+            }else{
+                num=mid;
+                if(bool){
+                    end=mid-1;
+                }else{
+                    start=mid+1;
+                }
+            }
+        }
+        return num;
+    }
+}
